@@ -1,0 +1,32 @@
+:root {
+  --green: #b3eccd;
+  --blue: #bcddf8;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#main {
+  display: grid;
+  grid-template-rows: 17vh auto;
+  min-height: 100vh;
+}
+
+#header {
+  background-color: var(--green);
+}
+
+#main-cont {
+  display: grid;
+  background-color: var(--blue);
+  grid-auto-rows: 12vh;
+  gap: 48px;
+  padding: 32px;
+}
+
+.book {
+  background-color: whitesmoke;
+  border-radius: 10px;
+}
