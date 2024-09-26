@@ -6,27 +6,105 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+.icon {
+  width: 7em;
+  justify-self: center;
 }
 
 #main {
   display: grid;
-  grid-template-rows: 17vh auto;
+  grid-template-rows: 17vh max-content auto;
   min-height: 100vh;
 }
 
 #header {
   background-color: var(--green);
+  display: grid;
+  grid-template-columns: 7fr 1fr;
+  padding: 0 36px 0 36px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* More vertical offset and blur for lifted effect */
+  z-index: 1001;
+  align-items: center;
+}
+
+#logo-div {
+  display: flex;
+  gap: 16px;
+  justify-content: start;
+  align-items: center;
+}
+
+#logo-name {
+  display: inline;
+  font-size: 46px;
+  font-weight: 600;
+  padding-top: 8px;
+}
+
+#add-div {
+  justify-self: center;
+}
+
+#add-book-button {
+  height: 90px;
+  width: 200px;
+}
+
+#labels {
+  background-color: var(--blue);
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 1fr;
+  gap: 32px;
+  justify-items: center;
+  align-items: center;
+  font-size: 24px;
+  padding: 30px 32px 0 32px;
+  margin-bottom: -24px;
+  z-index: 1000;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+#labels > p {
+  padding-left: 24px;
 }
 
 #main-cont {
   display: grid;
   background-color: var(--blue);
-  grid-auto-rows: 12vh;
-  gap: 48px;
-  padding: 32px;
+  grid-auto-rows: 10vh;
+  gap: 30px;
+  padding: 42px;
 }
 
 .book {
   background-color: whitesmoke;
   border-radius: 10px;
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 1fr;
+  gap: 32px;
+  align-items: center;
+  justify-items: center;
+  font-size: 36px;
+}
+
+.book > p {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-left: 24px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.book-button-div {
+  justify-self: center;
+}
+
+p {
+  padding: 0;
+  margin: 0;
 }

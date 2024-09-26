@@ -7,16 +7,22 @@ function Book(title, author, pages, readStatus) {
     this.readStatus = readStatus;
 }
 
+const mainCont = document.querySelector("#main-cont");
+const dialog = document.querySelector("#dialog")
+
 function createCard() {
-    const mainCont = document.querySelector("#main-cont");
     const newCard = document.createElement("div");
     newCard.classList.add('book');
+    newCard.addEventListener('click', () => showDialog(title, author));
     mainCont.appendChild(newCard);
 }
 
 createCard();
 createCard();
 
+function showDialog(title, author) {
+    dialog.classList.add('modal-show');
+}
 
 
 
