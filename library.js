@@ -8,24 +8,50 @@ function Book(title, author, pages, readStatus) {
 }
 
 const mainCont = document.querySelector("#main-cont");
-const dialog = document.querySelector("#dialog")
+const addButton = document.querySelector("#add-book-button");
 
-function createCard() {
+ function createElement(tag, text, attributes = {}) {
+    const element = document.createElement(tag);
+    if (text) {
+        element.textContent = text;
+    }
+    Object.keys(attributes).forEach((key) => {
+        element.setAttribute(key, attributes[key]);
+    });
+    return element;
+}
+
+function createCard(title, author, pages) {
     const newCard = document.createElement("div");
     newCard.classList.add('book');
-    newCard.addEventListener('click', () => showDialog(title, author));
     mainCont.appendChild(newCard);
+
+    const bookTitle = createElement("p", title, {class: 'book-title-p'});
+    newCard.appendChild(bookTitle);
+
+    const authorName = createElement("p", author, {class: 'book-author-p'});
+    newCard.appendChild(authorName);
+
+    const pagesCount = createElement("p", pages, {class: 'book-pages-p'});
+    newCard.appendChild(pagesCount);
+
+    const buttonsDiv = createElement("div", "", {class: 'book-buttons-div'});
+    newCard.appendChild(buttonsDiv);
+
+    const readButton = createElement("button", "eye", {class: 'read-button'});
+    buttonsDiv.appendChild(readButton);
+
+    const deleteButton = createElement("button", "X", {class: 'delete-button'});
+    buttonsDiv.appendChild(deleteButton);
+
+    deleteButton.addEventListener('click', () => {
+        newCard.remove();
+    })
 }
 
-createCard();
-createCard();
-
-function showDialog(title, author) {
-    dialog.classList.add('modal-show');
-}
+createCard("1984", "Melovi", 299);
 
 
-
-function addBookToLibrary() {
-    // do stuff here
-}
+ addButton.addEventListener('click', () => {
+     createCard();
+ });
