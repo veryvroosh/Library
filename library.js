@@ -43,23 +43,30 @@ function createCard(book) {
     const pagesCount = createElement("p", book.pages, {class: 'book-pages-p'});
     newCard.appendChild(pagesCount);
 
-    const buttonsDiv = createElement("div", "", {class: 'book-buttons-div'});
+    const buttonsDiv = createElement("div", "", {class: 'book-button-div'});
     newCard.appendChild(buttonsDiv);
 
-    const readButton = createElement("button", "eye", {class: 'read-button'});
+    const readButton = createElement("button", "", {class: 'read-button'});
+    if (book.readStatus) {
+        readButton.setAttribute('style', 'background-image: url(icons/eye-check-outline.svg); background-color: #9cff7f;   border: 1px solid rgba(0, 128, 0, 0.1);');
+    } else {
+        readButton.setAttribute('style', 'background-image: url(icons/eye-remove-outline.svg); background-color: #ff4f4f; border: 1px solid rgba(0, 0, 0, 0.1);');
+    }
     buttonsDiv.appendChild(readButton);
 
-    const deleteButton = createElement("button", "X", {class: 'delete-button'});
+    const deleteButton = createElement("button", "", {class: 'delete-button'});
+    deleteButton.setAttribute('style', 'background-image: url(icons/trash-can-outline.svg');
     buttonsDiv.appendChild(deleteButton);
 
     deleteButton.addEventListener('click', () => {
         newCard.remove();
-    })
+    });
 }
 
 
  addButton.addEventListener('click', () => {
      dialog.showModal();
+     dialog.classList.add("open");
      dialog.style.visibility = 'visible';
  });
 
@@ -68,17 +75,24 @@ function createCard(book) {
          alert('Please fill in all fields');
          return;
      }
-     let book = new Book(titleInput.value, authorInput.value, pagesInput.value, readstatusInput.value);
+     let book = new Book(titleInput.value, authorInput.value, pagesInput.value, readstatusInput.checked);
      myLibrary.push(book);
      createCard(book);
 
      dialog.style.visibility = 'hidden';
+     dialog.classList.remove("open");
      dialog.close();
      form.reset();
  });
 
+dialog.addEventListener('close', () => {
+    dialog.style.visibility = 'hidden';
+    dialog.classList.remove("open");
+});
+
  cancelButton.addEventListener('click', () => {
      dialog.style.visibility = 'hidden';
+     dialog.classList.remove("open");
      dialog.close();
      form.reset();
  });

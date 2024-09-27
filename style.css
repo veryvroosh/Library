@@ -1,5 +1,5 @@
 :root {
-  --green: #b3eccd;
+  --green: #a9efc8;
   --blue: #bcddf8;
 }
 
@@ -36,10 +36,11 @@ body {
   gap: 16px;
   justify-content: start;
   align-items: center;
+  margin-top: -18px;
 }
 
 #logo-name {
-  display: inline;
+  cursor: default;
   font-size: 46px;
   font-weight: 600;
   padding-top: 8px;
@@ -50,22 +51,61 @@ body {
 }
 
 #add-book-button {
+  background-color: #9cdac1;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 0 0 3px rgba(1, 54, 1, 0.05);
+  transition: background-color 0.1s ease, transform 0.3s;
+  transform: scale(1); /* initial scale */
+  font-size: 22px;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 15px;
+  opacity: 0.8;
   height: 90px;
   width: 200px;
 }
 
+#add-book-button:hover {
+  background-color: #84b7a4;
+  transform: scale(1.04);
+}
+
+/* Added clicking effect */
+#add-book-button:active {
+  /* Scale down the button slightly to create the clicking effect */
+  transform: scale(0.96);
+  /* Add a deeper shadow to give the button a pressed look */
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
 dialog {
   display: grid;
+  background-color: var(--green);
+  border-radius: 15px;
   visibility: hidden;
   grid-template-rows: 1fr 5fr;
   height: 50vh;
   width: 20vw;
+  transform: scale(0.8); /* initial scale */
+  backdrop-filter: blur(0px); /* initial blur effect */
+  transition: transform 0.3s;
+}
+
+dialog.open {
+  visibility: visible;
+  transform: scale(1); /* final scale */
+  backdrop-filter: blur(3px); /* final blur effect */
+}
+
+::backdrop {
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(3px); /* add a 2px blur effect to the dialog background */;
 }
 
 dialog > p {
   justify-self: center;
   align-self: center;
   font-size: 24px;
+  font-weight: 500;
 }
 
 form {
@@ -101,6 +141,10 @@ input {
   width: 90%
 }
 
+input[type=text], input[type=number]{
+  border-radius: 10px;
+}
+
 #dialog-buttons {
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 1fr;
@@ -112,21 +156,29 @@ input {
 #dialog-buttons > button {
   height: 50%;
   width: 90%;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  transition: transform 0.2s;
+  transform: scale(1); /* initial scale */
+}
+
+#dialog-buttons button:hover {
+  transform: scale(1.05); /* initial scale */
 }
 
 #labels {
   background-color: var(--blue);
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr 1fr;
+  grid-template-columns: 3fr 3fr 1fr 2fr;
   gap: 32px;
   justify-items: center;
   align-items: center;
   font-size: 24px;
   padding: 30px 32px 0 32px;
-  margin-bottom: -24px;
+  margin-bottom: -56px;
   z-index: 1000;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, 0.95);
 }
 
 #labels > p {
@@ -136,20 +188,30 @@ input {
 #main-cont {
   display: grid;
   background-color: var(--blue);
-  grid-auto-rows: 10vh;
+  grid-auto-rows: 11vh;
   gap: 30px;
-  padding: 42px;
+  padding: 64px;
 }
 
 .book {
   background-color: whitesmoke;
   border-radius: 10px;
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr 1fr;
+  grid-template-columns: 3fr 3fr 1fr 2fr;
   gap: 32px;
   align-items: center;
   justify-items: center;
   font-size: 36px;
+  transition: transform 0.3s;
+  transform: scale(1);
+}
+
+.book:hover {
+  transform: scale(1.02);
+}
+
+.book:hover p {
+  opacity: 1;
 }
 
 .book > p {
@@ -157,11 +219,61 @@ input {
   white-space: nowrap;
   text-overflow: ellipsis;
   padding-left: 24px;
-  color: rgba(0, 0, 0, 0.7);
+  transition: opacity 0.2s;
+  opacity: 0.75;
 }
 
 .book-button-div {
-  justify-self: center;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+}
+
+.book-button-div > button {
+  height: 75px;
+  width: 95px;
+}
+
+.read-button {
+  justify-self: end;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 10px;
+  border: 1px solid rgba(0, 128, 0, 0.1); /* for green buttons */
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05); /* subtle shadow */
+  border-radius: 15px;
+  transition: opacity 0.2s, transform 0.3s;
+  opacity: 0.7; /* initial opacity */
+  transform: scale(1); /* initial scale */
+  background-color: #ff4f4f;
+}
+
+.read-button:hover {
+  opacity: 1; /* hover opacity */
+  transform: scale(1.05); /* hover scale */
+}
+
+.delete-button {
+  justify-self: start;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1); /* for red buttons */
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05); /* subtle shadow */
+  border-radius: 15px;
+  transition: opacity 0.2s, transform 0.3s;
+  opacity: 0.7; /* initial opacity */
+  transform: scale(1); /* initial scale */
+  background-color: #ff2222;
+}
+
+.delete-button:hover {
+  opacity: 1; /* hover opacity */
+  transform: scale(1.05); /* hover scale */
 }
 
 p {
