@@ -16,6 +16,7 @@ const authorInput = document.querySelector("#book-author-input")
 const pagesInput = document.querySelector("#book-pages-input")
 const readstatusInput = document.querySelector("#book-readstatus-input")
 const submitButton = document.querySelector("#submit-button");
+const cancelButton = document.querySelector("#cancel-button");
 
  function createElement(tag, text, attributes = {}) {
     const element = document.createElement(tag);
@@ -59,13 +60,25 @@ function createCard(book) {
 
  addButton.addEventListener('click', () => {
      dialog.showModal();
+     dialog.style.visibility = 'visible';
  });
 
  submitButton.addEventListener('click', () => {
+     if (titleInput.value.trim() === '' || authorInput.value.trim() === '' || pagesInput.value.trim() === '') {
+         alert('Please fill in all fields');
+         return;
+     }
      let book = new Book(titleInput.value, authorInput.value, pagesInput.value, readstatusInput.value);
      myLibrary.push(book);
      createCard(book);
 
+     dialog.style.visibility = 'hidden';
+     dialog.close();
+     form.reset();
+ });
+
+ cancelButton.addEventListener('click', () => {
+     dialog.style.visibility = 'hidden';
      dialog.close();
      form.reset();
  });

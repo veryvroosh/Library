@@ -25,24 +25,27 @@
     <div id="add-div">
       <dialog>
         <p>Add a Book</p>
-        <form method="dialog">
+        <form>
           <div id="title-form">
             <label for="book-title-input">Title</label>
-            <input type="text" autocomplete="off" id="book-title-input">
+            <input type="text" autocomplete="off" id="book-title-input" required>
           </div>
           <div id="author-form">
             <label for="book-author-input">Author</label>
-            <input type="text" autocomplete="off" id="book-author-input">
+            <input type="text" autocomplete="off" id="book-author-input" required>
           </div>
           <div id="pages-form">
             <label for="book-pages-input">Pages</label>
-            <input type="number" autocomplete="off" id="book-pages-input">
+            <input type="number" autocomplete="off" id="book-pages-input" required>
           </div>
           <div id="readstatus-form">
             <input type="checkbox" id="book-readstatus-input">
-            <label for="book-readstatus-input">Did you read this book?</label>
+            <label for="book-readstatus-input">Finished Reading</label>
           </div>
-          <button type="submit" id="submit-button">Add</button>
+          <div id="dialog-buttons">
+            <button type="submit" id="submit-button">Add</button>
+            <button id="cancel-button">Cancel</button>
+          </div>
         </form>
       </dialog>
       <button id="add-book-button">Add</button>

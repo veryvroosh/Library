@@ -54,6 +54,66 @@ body {
   width: 200px;
 }
 
+dialog {
+  display: grid;
+  visibility: hidden;
+  grid-template-rows: 1fr 5fr;
+  height: 50vh;
+  width: 20vw;
+}
+
+dialog > p {
+  justify-self: center;
+  align-self: center;
+  font-size: 24px;
+}
+
+form {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr  max-content 1fr;
+}
+
+form > div {
+  display: grid;
+  grid-template-rows: max-content 1fr;
+}
+
+#readstatus-form {
+  grid-template-columns: max-content 1fr;
+  justify-items: start;
+  align-items: center;
+  padding-left: 4%;
+  margin-top: -24px;
+}
+
+#readstatus-form > label {
+  padding: 8px;
+  font-size: 14px;
+}
+
+label {
+  padding-left: 4%;
+}
+
+input {
+  justify-self: center;
+  height: 50%;
+  width: 90%
+}
+
+#dialog-buttons {
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: 30px;
+}
+
+#dialog-buttons > button {
+  height: 50%;
+  width: 90%;
+}
+
 #labels {
   background-color: var(--blue);
   display: grid;
