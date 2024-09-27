@@ -9,6 +9,13 @@ function Book(title, author, pages, readStatus) {
 
 const mainCont = document.querySelector("#main-cont");
 const addButton = document.querySelector("#add-book-button");
+const dialog = document.querySelector("dialog");
+const form = document.querySelector("form");
+const titleInput = document.querySelector("#book-title-input")
+const authorInput = document.querySelector("#book-author-input")
+const pagesInput = document.querySelector("#book-pages-input")
+const readstatusInput = document.querySelector("#book-readstatus-input")
+const submitButton = document.querySelector("#submit-button");
 
  function createElement(tag, text, attributes = {}) {
     const element = document.createElement(tag);
@@ -21,18 +28,18 @@ const addButton = document.querySelector("#add-book-button");
     return element;
 }
 
-function createCard(title, author, pages) {
+function createCard(book) {
     const newCard = document.createElement("div");
     newCard.classList.add('book');
     mainCont.appendChild(newCard);
 
-    const bookTitle = createElement("p", title, {class: 'book-title-p'});
+    const bookTitle = createElement("p", book.title, {class: 'book-title-p'});
     newCard.appendChild(bookTitle);
 
-    const authorName = createElement("p", author, {class: 'book-author-p'});
+    const authorName = createElement("p", book.author, {class: 'book-author-p'});
     newCard.appendChild(authorName);
 
-    const pagesCount = createElement("p", pages, {class: 'book-pages-p'});
+    const pagesCount = createElement("p", book.pages, {class: 'book-pages-p'});
     newCard.appendChild(pagesCount);
 
     const buttonsDiv = createElement("div", "", {class: 'book-buttons-div'});
@@ -49,9 +56,16 @@ function createCard(title, author, pages) {
     })
 }
 
-createCard("1984", "Melovi", 299);
-
 
  addButton.addEventListener('click', () => {
-     createCard();
+     dialog.showModal();
+ });
+
+ submitButton.addEventListener('click', () => {
+     let book = new Book(titleInput.value, authorInput.value, pagesInput.value, readstatusInput.value);
+     myLibrary.push(book);
+     createCard(book);
+
+     dialog.close();
+     form.reset();
  });

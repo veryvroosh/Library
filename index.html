@@ -13,26 +13,51 @@
 </head>
 <body>
 <div id="main">
+
+
   <div id="header">
+
     <div id="logo-div">
       <img id="logo" class="icon" src="icons/library.svg" alt="library logo">
       <div id="logo-name">Library</div>
     </div>
+
     <div id="add-div">
+      <dialog>
+        <p>Add a Book</p>
+        <form method="dialog">
+          <div id="title-form">
+            <label for="book-title-input">Title</label>
+            <input type="text" autocomplete="off" id="book-title-input">
+          </div>
+          <div id="author-form">
+            <label for="book-author-input">Author</label>
+            <input type="text" autocomplete="off" id="book-author-input">
+          </div>
+          <div id="pages-form">
+            <label for="book-pages-input">Pages</label>
+            <input type="number" autocomplete="off" id="book-pages-input">
+          </div>
+          <div id="readstatus-form">
+            <input type="checkbox" id="book-readstatus-input">
+            <label for="book-readstatus-input">Did you read this book?</label>
+          </div>
+          <button type="submit" id="submit-button">Add</button>
+        </form>
+      </dialog>
       <button id="add-book-button">Add</button>
     </div>
+
   </div>
+
+
   <div id="labels">
     <p>Title</p>
     <p>Author</p>
     <p>Pages</p>
   </div>
+
   <div id="main-cont">
-    <dialog id="dialog">
-      <h3 id="dialog-title"></h3>
-      <p id="dialog-author"></p>
-      <button id="close-dialog">Close</button>
-    </dialog>
 
     <div class="book">
       <p class="book-title-p">A Tale of Two Cities</p>
@@ -43,6 +68,7 @@
         <button class="delete-button">X</button>
       </div>
     </div>
+
   </div>
 </div>
 </body>
