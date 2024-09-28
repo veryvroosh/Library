@@ -212,9 +212,9 @@ input[type=text], input[type=number]{
 #placeholder-img {
   filter: grayscale(1);
   opacity: 0.85;
-  max-height: 590px;
+  max-height: 585px;
   object-fit: contain;
-  margin-top: -50px;
+  margin-top: -60px;
 }
 
 #placeholder-text {
