@@ -37,6 +37,7 @@ body {
   justify-content: start;
   align-items: center;
   margin-top: -18px;
+  user-select: none;
 }
 
 #logo-name {
@@ -62,6 +63,7 @@ body {
   opacity: 0.8;
   height: 90px;
   width: 200px;
+  cursor: pointer;
 }
 
 #add-book-button:hover {
@@ -257,6 +259,11 @@ input[type=text], input[type=number]{
   transform: scale(1.05); /* hover scale */
 }
 
+.read-button:active {
+  transform: scale(0.95); /* click scale */
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1); /* deeper shadow on click */
+}
+
 .delete-button {
   justify-self: start;
   background-position: center;
@@ -274,6 +281,11 @@ input[type=text], input[type=number]{
 .delete-button:hover {
   opacity: 1; /* hover opacity */
   transform: scale(1.05); /* hover scale */
+}
+
+.delete-button:active {
+  transform: scale(0.95); /* click scale */
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1); /* deeper shadow on click */
 }
 
 p {

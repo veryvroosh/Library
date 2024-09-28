@@ -17,6 +17,8 @@ const pagesInput = document.querySelector("#book-pages-input")
 const readstatusInput = document.querySelector("#book-readstatus-input")
 const submitButton = document.querySelector("#submit-button");
 const cancelButton = document.querySelector("#cancel-button");
+const labels = document.querySelector("#labels");
+const labelPs = document.querySelectorAll("#labels > p");
 
  function createElement(tag, text, attributes = {}) {
     const element = document.createElement(tag);
@@ -29,7 +31,27 @@ const cancelButton = document.querySelector("#cancel-button");
     return element;
 }
 
+let cardCount = 0;
+
+
+function checkLabel(cardCount) {
+    if(!cardCount) {
+        labelPs.forEach((p) => {
+            p.style.display = 'none';
+        });
+    } else {
+        labelPs.forEach((p) => {
+            p.style.display = 'block';
+        });
+    }
+}
+
+checkLabel(cardCount);
+
 function createCard(book) {
+    cardCount++;
+    checkLabel(cardCount)
+
     const newCard = document.createElement("div");
     newCard.classList.add('book');
     mainCont.appendChild(newCard);
@@ -46,10 +68,13 @@ function createCard(book) {
     const buttonsDiv = createElement("div", "", {class: 'book-button-div'});
     newCard.appendChild(buttonsDiv);
 
+    let read;
     const readButton = createElement("button", "", {class: 'read-button'});
     if (book.readStatus) {
+        read = true;
         readButton.setAttribute('style', 'background-image: url(icons/eye-check-outline.svg); background-color: #9cff7f;   border: 1px solid rgba(0, 128, 0, 0.1);');
     } else {
+        read = false;
         readButton.setAttribute('style', 'background-image: url(icons/eye-remove-outline.svg); background-color: #ff4f4f; border: 1px solid rgba(0, 0, 0, 0.1);');
     }
     buttonsDiv.appendChild(readButton);
@@ -58,7 +83,19 @@ function createCard(book) {
     deleteButton.setAttribute('style', 'background-image: url(icons/trash-can-outline.svg');
     buttonsDiv.appendChild(deleteButton);
 
+    readButton.addEventListener('click', () => {
+        if(read) {
+            read = false;
+            readButton.setAttribute('style', 'background-image: url(icons/eye-remove-outline.svg); background-color: #ff4f4f; border: 1px solid rgba(0, 0, 0, 0.1);');
+        } else {
+            read = true;
+            readButton.setAttribute('style', 'background-image: url(icons/eye-check-outline.svg); background-color: #9cff7f;   border: 1px solid rgba(0, 128, 0, 0.1);');
+        }
+    })
+
     deleteButton.addEventListener('click', () => {
+        cardCount--;
+        checkLabel(cardCount);
         newCard.remove();
     });
 }
