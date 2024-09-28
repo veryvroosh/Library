@@ -17,8 +17,8 @@ const pagesInput = document.querySelector("#book-pages-input")
 const readstatusInput = document.querySelector("#book-readstatus-input")
 const submitButton = document.querySelector("#submit-button");
 const cancelButton = document.querySelector("#cancel-button");
-const labels = document.querySelector("#labels");
 const labelPs = document.querySelectorAll("#labels > p");
+const placeholder = document.querySelector("#placeholder");
 
  function createElement(tag, text, attributes = {}) {
     const element = document.createElement(tag);
@@ -36,10 +36,12 @@ let cardCount = 0;
 
 function checkLabel(cardCount) {
     if(!cardCount) {
+        mainCont.appendChild(placeholder);
         labelPs.forEach((p) => {
             p.style.display = 'none';
         });
     } else {
+        placeholder.remove();
         labelPs.forEach((p) => {
             p.style.display = 'block';
         });
